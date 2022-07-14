@@ -1,0 +1,53 @@
+#--------------------------------------
+#
+# Heaps core libraries
+#
+#--------------------------------------
+-lib heaps
+-lib hlsdl
+#-lib hldx
+
+#--------------------------------------
+#
+# external libraries
+#
+#--------------------------------------
+
+# will be used for Tutorial_0X.hx
+-lib slide
+
+#--------------------------------------
+#
+# code & game assets/resources
+#
+#--------------------------------------
+
+# main directory for code
+-cp src
+
+# additional directories
+-p res
+
+#--------------------------------------
+#
+# Output
+#
+#--------------------------------------
+
+#-main Main
+#-main Tutorial_01
+#-main Tutorial_02
+#-main Tutorial_03
+#-main Tutorial_04
+#-main Tutorial_0
+-main Tutorial_Final
+
+-hl game_app_executable_with_hashlink.hl
+
+#-D windowSize=400x300
+#-D windowSize=800x600
+-D windowSize=1280x720
+-D windowTitle=Heaps 2D Tutorial
+#-D resourcesPath=assets ???
+#-D dce=full
+-D debug=true

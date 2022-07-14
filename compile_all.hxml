@@ -1,0 +1,38 @@
+#---------------------------------------------
+#
+# compiling several files
+#
+# (make sure to deactivate all -main and -hl
+#  in the compile.hxml first!! or you'll get
+#  a recursive compile, infinitely running!)
+#
+#---------------------------------------------
+
+compile_hl.hxml
+
+-main Tutorial_01
+-hl tut01.hl
+
+--next
+compile_hl.hxml
+
+-main Tutorial_02
+-hl tut02.hl
+
+--next
+compile_hl.hxml
+
+-main Tutorial_03
+-hl tut03.hl
+
+--next
+compile_hl.hxml
+
+-main Tutorial_04
+-hl tut04.hl
+
+--next
+compile_hl.hxml
+
+-main Tutorial_Final
+-hl tut_final.hl

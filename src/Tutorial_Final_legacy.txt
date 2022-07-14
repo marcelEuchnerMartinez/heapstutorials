@@ -1,0 +1,32 @@
+
+class OldFunctions {
+
+    var player : h2d.Object; // dummy reference
+    var s2d    : h2d.Scene;  // dummy reference
+
+    function createSprite_animated_old( image_resource:hxd.res.Image, speed, chosenFrames:Array<Int> ) : h2d.Anim {
+        var height = image_resource.getSize().height;
+        var autoCount = Math.floor( image_resource.getSize().width / height );
+        var tiles  = image_resource.toTile().split( autoCount );
+        var frames = [ for( i in chosenFrames ) tiles[i] ];
+        return new h2d.Anim( frames, speed, s2d );
+    }
+    function changePlayerAnimation_old( frame_indices:Array<Int>, looksLeft:Bool=false ) {
+        var old_x = player.x;
+        var old_y = player.y;
+        var old_sprite = player;
+
+        var tile = Res.blue_strip.toTile();
+        var framesAll    = tile.split( 6 );
+        for( f in framesAll ){
+            f.setCenterRatio();
+            if( looksLeft )
+                f.flipX();
+        }
+        var framesChosen = [ for( i in frame_indices ) framesAll[i] ];
+        player = new h2d.Anim( framesChosen, 2, s2d );
+
+        player.setPosition( old_x, old_y );
+        old_sprite.remove();
+    }
+}
