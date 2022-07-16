@@ -9,30 +9,52 @@
 #---------------------------------------------
 
 compile_hl.hxml
+--cmd echo compiled 1 file...
+
+--each
+
 
 -main Tutorial_01
 -hl tut01.hl
 
+
 --next
-compile_hl.hxml
+
 
 -main Tutorial_02
 -hl tut02.hl
 
+
 --next
-compile_hl.hxml
+
 
 -main Tutorial_03
 -hl tut03.hl
 
+
 --next
-compile_hl.hxml
+
 
 -main Tutorial_04
 -hl tut04.hl
 
+
 --next
-compile_hl.hxml
+
+
+-main Tutorial_05
+-hl tut05.hl
+
+
+--next
+
+
+-main Tutorial_06
+-hl tut06.hl
+
+
+--next
+
 
 -main Tutorial_Final
 -hl tut_final.hl

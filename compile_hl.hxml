@@ -14,7 +14,7 @@
 #--------------------------------------
 
 # will be used for Tutorial_0X.hx
--lib slide
+#-lib slide
 
 #--------------------------------------
 #
@@ -39,6 +39,8 @@
 #-main Tutorial_02
 #-main Tutorial_03
 #-main Tutorial_04
+#-main Tutorial_05
+#-main Tutorial_06
 #-main Tutorial_0
 -main Tutorial_Final
 

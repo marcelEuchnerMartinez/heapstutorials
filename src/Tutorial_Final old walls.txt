@@ -12,7 +12,7 @@ class Tutorial_Final extends hxd.App {
     var enemies : Array< { sprite:h2d.Anim, direction:Float } > = [];
     var bullets : Array< h2d.Graphics > = [];
 
-    var walls   : Array< { bounds:h2d.col.Bounds, type:Int } > = []; //Array<Array<Int>>;
+    var walls   : Array< { fieldX:Int, fieldY:Int, type:Int } > = []; //Array<Array<Int>>;
     var background_tilegroup : h2d.TileGroup;
 
     var score_collectedCoins : Int = 0;
@@ -51,7 +51,7 @@ class Tutorial_Final extends hxd.App {
 
         // how-to-play
         var t = new h2d.Text( hxd.res.DefaultFont.get(), s2d );
-        t.text = "Use the arrow keys or W-A-S-D to move around.\nPress left mouse button to shoot.\n\nPick up the coins!";
+        t.text = "Use the arrow keys or W-A-S-D to move around.\nPress left mouse to shoot.\n\nPick up the coins!";
 
         // score
         var t = new h2d.Text( hxd.res.DefaultFont.get(), s2d );
@@ -81,10 +81,11 @@ class Tutorial_Final extends hxd.App {
         return false;
     }
 
-    function checkForWalls( x:Float, y:Float ){
-        var point = new h2d.col.Point( x, y );
+    function checkForWalls( x_float:Float, y_float:Float ){
+        var x = Math.floor(x_float/32); // translating postion to simple field position, e.g. (4 | 9)
+        var y = Math.floor(y_float/32);
         for( w in walls ){
-            if( w.bounds.contains( point ) && w.type==1 )
+            if( w.fieldX==x && w.fieldY==y && w.type==1 )
                 return true;
         }
         return false;
@@ -94,8 +95,7 @@ class Tutorial_Final extends hxd.App {
         for( b in bullets ) {
             for( e in enemies ){
                 if( b.getBounds().intersects( e.sprite.getBounds() ) ){
-                    //e.direction = b.rotation;
-                    assignRandomPositionInScene( e.sprite );
+                    e.direction = b.rotation;
                     bullets.remove( b );
                     b.remove();
                 }
@@ -253,27 +253,26 @@ class Tutorial_Final extends hxd.App {
                     coin.setPosition( posInSc.x +16, posInSc.y +16 ); // +16 because coin sprite is centered
                 case "#":
                     var posInSc = positionInScene( x, y );
-                    create_wall( posInSc.x, posInSc.y );
+                    create_wall( Math.floor(posInSc.x), Math.floor(posInSc.y) );
                 default:
             }
             x++;
         }
     }
 
-    function create_wall( x:Float, y:Float ) {
+    function create_wall( x:Int, y:Int ) {
         var tile = Res.tilegroup.toTile().grid( 16 );
         var chosenTile = tile[1][0];
         chosenTile.scaleToSize( 32, 32 ); // making tile bigger on screen
         background_tilegroup.add( x, y, chosenTile );
 
-        var bounds = new h2d.col.Bounds();
-        bounds.set( x, y, 32, 32 );
-
         walls.push( // adds our wall object: an anonymous structure/object
             {
-                bounds: bounds,
-                type:   1
+                fieldX: Math.floor(x/32), // translate to simple position, e.g. ( 4 | 9 )
+                fieldY: Math.floor(y/32),
+                type: 1
             } );
+        trace( "wall", x, y );
     }
 
     function create_coin() {

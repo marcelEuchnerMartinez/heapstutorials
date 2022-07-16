@@ -10,6 +10,8 @@ class Tutorial_03 extends hxd.App {
     
     override function init() {
 
+        this.engine.backgroundColor = 0xFF006600; // a dark green background
+
         //player
         var tiles  = Res.blue_strip.toTile().split( 6 );
         var frames = [ tiles[0], tiles[1] ];

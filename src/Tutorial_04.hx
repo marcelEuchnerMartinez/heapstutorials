@@ -8,7 +8,7 @@ class Tutorial_04 extends hxd.App {
     }
 
     var player  : h2d.Anim;
-    var coins   : Array<h2d.Anim> = [];
+    var coins   : Array< h2d.Anim > = [];
 
     var score_collectedCoins : Int = 0;
     var updatableInfoHUD : h2d.Text;

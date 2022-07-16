@@ -1,18 +1,17 @@
 import hxd.Res;
 import h2d.Anim;
 
-class Tutorial_Final extends hxd.App {
+class Tutorial_06 extends hxd.App {
     static function main() {
-        new Tutorial_Final();
+        new Tutorial_06();
         Res.initLocal();
     }
 
     var player  : h2d.Anim;
-    var coins   : Array<h2d.Anim> = [];
+    var coins   : Array< h2d.Anim > = [];
     var enemies : Array< { sprite:h2d.Anim, direction:Float } > = [];
     var bullets : Array< h2d.Graphics > = [];
 
-    var walls   : Array< { bounds:h2d.col.Bounds, type:Int } > = []; //Array<Array<Int>>;
     var background_tilegroup : h2d.TileGroup;
 
     var score_collectedCoins : Int = 0;
@@ -72,24 +71,6 @@ class Tutorial_Final extends hxd.App {
         checkCollision_bullets();
     }
 
-    // returns wether obj may/will move
-    function moveObjectWhenWallFree( obj:h2d.Object, x:Float, y:Float ) {
-        if( checkForWalls( x, y ) == false ){ // meaning: walls found = false
-            obj.setPosition( x, y );
-            return true;
-        }
-        return false;
-    }
-
-    function checkForWalls( x:Float, y:Float ){
-        var point = new h2d.col.Point( x, y );
-        for( w in walls ){
-            if( w.bounds.contains( point ) && w.type==1 )
-                return true;
-        }
-        return false;
-    }
-
     function checkCollision_bullets() {
         for( b in bullets ) {
             for( e in enemies ){
@@ -146,12 +127,8 @@ class Tutorial_Final extends hxd.App {
         for( e in enemies ){
             // enemies move
             var obj = e.sprite;
-            //obj.x += Math.cos( e.direction ) * speed;
-            //obj.y += Math.sin( e.direction ) * speed;
-            var move_x = moveObjectWhenWallFree( obj, obj.x + Math.cos( e.direction ) * speed, obj.y );
-            var move_y = moveObjectWhenWallFree( obj, obj.x, obj.y + Math.sin( e.direction ) * speed );
-            if( !move_x || !move_y )
-                e.direction = hxd.Math.random( Math.PI * 2 ); // change direction when hitting wall
+            obj.x += Math.cos( e.direction ) * speed;
+            obj.y += Math.sin( e.direction ) * speed;
             // and are trapped inside the scene
             wrapInsideScene( obj );
         }
@@ -193,7 +170,7 @@ class Tutorial_Final extends hxd.App {
             hxd.Key.RIGHT,
             hxd.Key.D,
             ()->{ changePlayerAnimation( [2,3] ); },
-            ()->{ moveObjectWhenWallFree( player, player.x+speed, player.y ); }
+            ()->{ player.x+=speed; }
         );
 
         // moving left
@@ -201,7 +178,7 @@ class Tutorial_Final extends hxd.App {
             hxd.Key.LEFT,
             hxd.Key.A,
             ()->{ changePlayerAnimation( [2,3], true ); },
-            ()->{ moveObjectWhenWallFree( player, player.x-speed, player.y ); }
+            ()->{ player.x-=speed; }
         );
 
         // moving down
@@ -209,7 +186,7 @@ class Tutorial_Final extends hxd.App {
             hxd.Key.DOWN,
             hxd.Key.S,
             ()->{ changePlayerAnimation( [0,1] ); },
-            ()->{ moveObjectWhenWallFree( player, player.x, player.y+speed ); }
+            ()->{ player.y+=speed; }
         );
 
         // moving up
@@ -217,7 +194,7 @@ class Tutorial_Final extends hxd.App {
             hxd.Key.UP,
             hxd.Key.W,
             ()->{ changePlayerAnimation( [4,5] ); },
-            ()->{ moveObjectWhenWallFree( player, player.x, player.y-speed ); }
+            ()->{ player.y-=speed; }
         );
     }
 
@@ -253,27 +230,18 @@ class Tutorial_Final extends hxd.App {
                     coin.setPosition( posInSc.x +16, posInSc.y +16 ); // +16 because coin sprite is centered
                 case "#":
                     var posInSc = positionInScene( x, y );
-                    create_wall( posInSc.x, posInSc.y );
+                    create_wall( Math.floor(posInSc.x), Math.floor(posInSc.y) );
                 default:
             }
             x++;
         }
     }
 
-    function create_wall( x:Float, y:Float ) {
+    function create_wall( x:Int, y:Int ) {
         var tile = Res.tilegroup.toTile().grid( 16 );
         var chosenTile = tile[1][0];
-        chosenTile.scaleToSize( 32, 32 ); // making tile bigger on screen
+        chosenTile.scaleToSize( 32, 32 ); // making tile bigger on screen: from 16 to 32
         background_tilegroup.add( x, y, chosenTile );
-
-        var bounds = new h2d.col.Bounds();
-        bounds.set( x, y, 32, 32 );
-
-        walls.push( // adds our wall object: an anonymous structure/object
-            {
-                bounds: bounds,
-                type:   1
-            } );
     }
 
     function create_coin() {
@@ -313,49 +281,6 @@ class Tutorial_Final extends hxd.App {
                 f.setCenterRatio();
             if( looksLeft )
                 f.flipX();
-        }
-        var frames = [ for( i in chosenFrames ) allFrames[i] ];
-        return new h2d.Anim( frames, speed, s2d );
-    }
-}
-
-//
-//
-//          O T H E R   S T U F F 
-//
-//          (will help beginners later when advancing after tutorial)
-//
-//
-
-class CreatingSpritesExtension {
-
-    var player : h2d.Object; // dummy reference
-    var s2d    : h2d.Scene;  // dummy reference
-
-    function changePlayerAnimation_byExtended( chosenFrames:Array<Int>, looksLeft:Bool=false ) {
-        var old_x = player.x;
-        var old_y = player.y;
-        var old_sprite = player;
-
-        player = createSprite_animated_extended( Res.blue_strip, 5, chosenFrames,
-            (frame)->{
-                frame.setCenterRatio();
-                if( looksLeft )
-                    frame.flipX();
-                return frame;
-            }
-            ); 
-
-        player.setPosition( old_x, old_y );
-        old_sprite.remove();
-    }
-
-    function createSprite_animated_extended( image_resource:hxd.res.Image, speed, chosenFrames:Array<Int>, forAllFrames:(frame:h2d.Tile)->h2d.Tile ) : h2d.Anim {
-        var height = image_resource.getSize().height;
-        var autoCount = Math.floor( image_resource.getSize().width / height );
-        var allFrames  = image_resource.toTile().split( autoCount );
-        for( f in allFrames ){
-            f = forAllFrames( f );
         }
         var frames = [ for( i in chosenFrames ) allFrames[i] ];
         return new h2d.Anim( frames, speed, s2d );
