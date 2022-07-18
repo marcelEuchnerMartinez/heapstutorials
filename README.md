@@ -2,20 +2,23 @@
 
 Explaining a little bit of all the basics needed to create a 2D game with the Heaps.io game engine/framework.
 
-## Features to introduce
+## Features introduced or yet to introduce
 
-- (some Heaps basics should be learnt from wiki)
-- sprites, sprite from strip
-- basic collisions one-to-many (player to coins)
-- map editor by reading strings/text files
-- detecting walls
-- bullets, many-to-many collision
-- using a "game object" class
-- camera on player
-- UI / HUD (user interface, head-up display)
-- portal between two scenes (portal with filter)
+code|documented|feature|note
+-|-|-
+_|_|(some Heaps basics should be learnt from wiki)
+ok|_|sprites, sprite from strip
+ok|_|basic collisions one-to-many (player to coins)
+ok|_|map editor by reading strings/text files
+ok|_|detecting walls
+ok|_|bullets, many-to-many collision
+ok|_|using a "game object" class|OOP
+_|_|camera on player
+_|_|UI / HUD (user interface, head-up display)
+_|_|portal between two scenes (portal with filter)
 
-## History: What's added each chapter
+
+## Overview: What's added each chapter
 
 - 01
   - adding some `h2d.Bitmap` sprites at random positions
@@ -46,3 +49,5 @@ Explaining a little bit of all the basics needed to create a 2D game with the He
     - `wrapPlayerScene`
     - `update_InfoHUD`
     - `checkCollision_playerAndCoins`
+- 07
+  - shrinked the bounding boxes inside player-enemy collision for smoother collision

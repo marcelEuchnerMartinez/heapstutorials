@@ -8,14 +8,16 @@
 #
 #---------------------------------------------
 
-compile_hl.hxml
---cmd echo compiled 1 file...
+compile_config.hxml
+-lib hlsdl
+--cmd echo compiled 1 file... please wait...
 
 --each
 
 
 -main Tutorial_01
 -hl tut01.hl
+-D windowTitle=Heaps 2D Tutorial: Part 01
 
 
 --next
@@ -23,6 +25,7 @@ compile_hl.hxml
 
 -main Tutorial_02
 -hl tut02.hl
+-D windowTitle=Heaps 2D Tutorial: Part 02
 
 
 --next
@@ -30,6 +33,7 @@ compile_hl.hxml
 
 -main Tutorial_03
 -hl tut03.hl
+-D windowTitle=Heaps 2D Tutorial: Part 03
 
 
 --next
@@ -37,6 +41,7 @@ compile_hl.hxml
 
 -main Tutorial_04
 -hl tut04.hl
+-D windowTitle=Heaps 2D Tutorial: Part 04
 
 
 --next
@@ -44,6 +49,7 @@ compile_hl.hxml
 
 -main Tutorial_05
 -hl tut05.hl
+-D windowTitle=Heaps 2D Tutorial: Part 05
 
 
 --next
@@ -51,10 +57,12 @@ compile_hl.hxml
 
 -main Tutorial_06
 -hl tut06.hl
+-D windowTitle=Heaps 2D Tutorial: Part 06
 
 
 --next
 
 
--main Tutorial_Final
--hl tut_final.hl
+-main Tutorial_07
+-hl tut07.hl
+-D windowTitle=Heaps 2D Tutorial: Part 07
