@@ -5,17 +5,17 @@ Explaining a little bit of all the basics needed to create a 2D game with the He
 ## Features introduced or yet to introduce
 
 code|documented|feature|note
--|-|-
-_|_|(some Heaps basics should be learnt from wiki)
-ok|_|sprites, sprite from strip
-ok|_|basic collisions one-to-many (player to coins)
-ok|_|map editor by reading strings/text files
-ok|_|detecting walls
-ok|_|bullets, many-to-many collision
+-|-|-|-
+_|_|(some Heaps basics should be learnt from wiki)|
+ok|_|sprites, sprite from strip|
+ok|_|basic collisions one-to-many (player to coins)|
+ok|_|map editor by reading strings/text files|
+ok|_|detecting walls|
+ok|_|bullets, many-to-many collision|
 ok|_|using a "game object" class|OOP
-_|_|camera on player
-_|_|UI / HUD (user interface, head-up display)
-_|_|portal between two scenes (portal with filter)
+_|_|camera on player|
+_|_|UI / HUD (user interface, head-up display)|
+_|_|portal between two scenes (portal with filter)|
 
 
 ## Overview: What's added each chapter
