@@ -47,12 +47,12 @@ class Tutorial_04 extends hxd.App {
 
     override function update(dt:Float) {
         player_movement();
-        wrapPlayerScene();
+        wrapPlayerInScene();
         update_InfoHUD(); // updates score information
         checkCollision_playerAndCoins();
     }
 
-    function wrapPlayerScene(){
+    function wrapPlayerInScene(){
         if( player.x < 0 )
             player.x = s2d.width;
         if( player.y < 0 )

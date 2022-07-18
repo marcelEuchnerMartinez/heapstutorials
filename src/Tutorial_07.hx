@@ -13,7 +13,7 @@ class Tutorial_07 extends hxd.App {
     var enemies : Array< { sprite:h2d.Anim, direction:Float } > = [];
     var bullets : Array< h2d.Graphics > = [];
 
-    var walls   : Array< { bounds:h2d.col.Bounds, type:Int } > = []; //Array<Array<Int>>;
+    var walls   : Array< h2d.col.Bounds /*{ bounds:h2d.col.Bounds, type:Int }*/ > = []; //Array<Array<Int>>;
     var background_tilegroup : h2d.TileGroup;
 
     var score_collectedCoins : Int = 0;
@@ -85,7 +85,7 @@ class Tutorial_07 extends hxd.App {
     function checkForWalls( x:Float, y:Float ){
         var point = new h2d.col.Point( x, y );
         for( w in walls ){
-            if( w.bounds.contains( point ) && w.type==1 )
+            if( w.contains( point ) ) //&& w.type==1 
                 return true;
         }
         return false;
@@ -272,11 +272,11 @@ class Tutorial_07 extends hxd.App {
         var bounds = new h2d.col.Bounds();
         bounds.set( x, y, 32, 32 );
 
-        walls.push( // adds our wall object: an anonymous structure/object
-            {
+        walls.push( bounds// adds our wall object: an anonymous structure/object
+            /*{
                 bounds: bounds,
                 type:   1
-            } );
+            } */);
     }
 
     function create_coin() {

@@ -1,0 +1,47 @@
+
+// camera setup (init)
+
+        hxd.Window.getInstance().title = "hehehe";
+        s2d.camera.anchorX = 0.5;
+        s2d.camera.anchorY = 0.5;
+        s2d.camera.follow = player;
+        var t = new h2d.Text( hxd.res.DefaultFont.get(), s2d );
+        t.text = "Press Z to zoom\nP to focus on player/scene\nENTER or F4 for fullscreen/window mode";
+        t.setPosition( 0, s2d.height - t.getBounds().height );
+
+
+
+
+function update_camera(){
+
+
+        // fullscreen / window mode
+        if ( hxd.Key.isPressed( hxd.Key.ENTER) || hxd.Key.isPressed( hxd.Key.F4) ){
+            var window = hxd.Window.getInstance();
+            var display_mode = window.displayMode;
+            if( display_mode==DisplayMode.Windowed )
+                window.displayMode = hxd.Window.DisplayMode.Fullscreen;
+            else
+                window.displayMode = hxd.Window.DisplayMode.Windowed;
+        }
+
+        // zoom in / out
+        if ( hxd.Key.isPressed( hxd.Key.Z ) ){
+            if( s2d.camera.scaleX == 1 )
+                s2d.camera.setScale( 2, 2 );
+            else
+                s2d.camera.setScale( 1, 1 );
+        }
+        
+        // focus player / reset to default (scene)
+        if ( hxd.Key.isPressed( hxd.Key.P ) ){
+            if( s2d.camera.follow == player ){
+                s2d.camera.follow = s2d;
+                s2d.camera.setAnchor( 0, 0 );
+            }
+            else {
+                s2d.camera.follow = player;
+                s2d.camera.setAnchor( 0.5, 0.5 );
+            }
+        }
+    }
