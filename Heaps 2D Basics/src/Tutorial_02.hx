@@ -25,7 +25,7 @@ class Tutorial_02 extends hxd.App {
         // coins
         for( i in 0...20 ){
             var tiles  = Res.coin_strip.toTile().split( 4 );
-            var frames = tiles.concat( [ tiles[2], tiles[1] ] ); // this will make (0, 1, 2, 3, 2, 1)
+            var frames = tiles.concat( [ tiles[2], tiles[1] ] ); // this will make (0, 1, 2, 3, 2, 1), thus going back and forth...
             var coin  = new h2d.Anim( frames, 5, s2d );
             assignRandomPositionInScene( coin );
         }

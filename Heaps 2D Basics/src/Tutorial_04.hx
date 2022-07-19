@@ -147,7 +147,7 @@ class Tutorial_04 extends hxd.App {
         old_sprite.remove();
     }
 
-    // - method name should actually be `createSprite_fromStrip_animated` or `createAnim_from_Strip`
+    // - method name should actually be `createSprite_fromStrip_animated` or `createAnim_fromStrip`
     // - be aware to chose chosenFrames *inside* of what exists!
     function createSprite_animated( image_resource:hxd.res.Image, speed, chosenFrames:Array<Int>, centered:Bool=true, looksLeft:Bool=false ) : h2d.Anim {
         var height = image_resource.getSize().height;

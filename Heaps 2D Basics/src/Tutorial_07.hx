@@ -5,7 +5,7 @@ import h2d.Anim;
 class Tutorial_07 extends hxd.App {
     static function main() {
         new Tutorial_07();
-        
+
         #if sys
         hxd.Res.initLocal(); // HashLink
         #else
@@ -236,9 +236,11 @@ class Tutorial_07 extends hxd.App {
     }
 
     function loadLevel( level_string:String, startX:Float=0, startY:Float=0 ) {
+        
         var fieldSize = 32;
         var x = 0;
         var y = 0;
+
         // local function (to calculate the real position in the scene)
         var positionInScene = ( x:Int, y:Int ) -> {
             var sx = (x *fieldSize) + startX;
@@ -248,6 +250,7 @@ class Tutorial_07 extends hxd.App {
                 y: sy
             };
         };
+
         for( i in 0...level_string.length ){
             var char = level_string.charAt( i );
             switch( char ){
@@ -276,11 +279,7 @@ class Tutorial_07 extends hxd.App {
         var bounds = new h2d.col.Bounds();
         bounds.set( x, y, 32, 32 );
 
-        walls.push( bounds// adds our wall object: an anonymous structure/object
-            /*{
-                bounds: bounds,
-                type:   1
-            } */);
+        walls.push( bounds );
     }
 
     function create_coin() {
@@ -309,7 +308,7 @@ class Tutorial_07 extends hxd.App {
         old_sprite.remove();
     }
 
-    // - method name should actually be `createSprite_fromStrip_animated` or `createAnim_from_Strip`
+    // - method name should actually be `createSprite_fromStrip_animated` or `createAnim_fromStrip`
     // - be aware to chose chosenFrames *inside* of what exists!
     function createSprite_animated( image_resource:hxd.res.Image, speed, chosenFrames:Array<Int>, centered:Bool=true, looksLeft:Bool=false ) : h2d.Anim {
         var height = image_resource.getSize().height;
