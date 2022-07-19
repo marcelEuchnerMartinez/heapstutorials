@@ -24,7 +24,6 @@ class GameObject extends h2d.Object {
     function set_sprite( obj : h2d.Object ){
         sprite = obj;
         sprite.parent = this;
-        hitbox = obj.getBounds();
         return sprite;
     }
 

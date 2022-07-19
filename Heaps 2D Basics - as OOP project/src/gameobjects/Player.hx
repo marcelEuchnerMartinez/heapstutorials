@@ -8,8 +8,8 @@ class Player extends GameObject {
 
     public function new( level_ ) {
         super( level_ );
-        useAnimationFromSpriteStrip( Res.blue_strip, 5, [0,1] );
-
+        var s = useAnimationFromSpriteStrip( Res.blue_strip, 5, [0,1] );
+        hitbox = s.getBounds();
         hitbox.scaleCenter( 0.5 );
 
         level.player = this;

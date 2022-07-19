@@ -6,8 +6,8 @@ class Coin extends GameObject {
 
     public function new( level_ ) {
         super( level_ );
-        useAnimationFromSpriteStrip( Res.coin_strip, 10, [0,1,2,3,2,1] );
-
+        var s = useAnimationFromSpriteStrip( Res.coin_strip, 10, [0,1,2,3,2,1] );
+        hitbox = s.getBounds();
         hitbox.scaleCenter( 0.5 );
 
         level.coins.push( this );
