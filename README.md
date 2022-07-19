@@ -1,8 +1,6 @@
-# Heaps 2D Tutorial
+# Heaps tutorials
 
-Explaining a little bit of all the basics needed to create a 2D game with the Heaps.io game engine/framework.
-
-## Features introduced or yet to introduce
+## 2D
 
 code|tut. article|feature|where
 -|-|-|-
@@ -19,4 +17,3 @@ ok|_|using a "game object/entity" class and a "level" class|Basics OOP
 _|_|camera on player|_
 _|_|UI / HUD (user interface, head-up display)|_
 _|_|portal between two scenes (portal with filter)|_
-
