@@ -2,6 +2,8 @@ compile_config.hxml
 
 -js script_to_embed_in_html_file.js
 
+# html template
+--cmd COPY .\res\html\run_game_in_browser.html .
 
 #---------------------------------------------
 # Main file:
