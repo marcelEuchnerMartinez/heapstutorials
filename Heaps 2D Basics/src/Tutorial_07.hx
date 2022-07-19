@@ -5,7 +5,12 @@ import h2d.Anim;
 class Tutorial_07 extends hxd.App {
     static function main() {
         new Tutorial_07();
-        Res.initLocal();
+        
+        #if sys
+        hxd.Res.initLocal(); // HashLink
+        #else
+        hxd.Res.initEmbed(); // Html5/js
+        #end
     }
 
     var player  : h2d.Anim;
@@ -13,7 +18,7 @@ class Tutorial_07 extends hxd.App {
     var enemies : Array< { sprite:h2d.Anim, direction:Float } > = [];
     var bullets : Array< h2d.Graphics > = [];
 
-    var walls   : Array< h2d.col.Bounds /*{ bounds:h2d.col.Bounds, type:Int }*/ > = []; //Array<Array<Int>>;
+    var walls   : Array< h2d.col.Bounds > = [];
     var background_tilegroup : h2d.TileGroup;
 
     var score_collectedCoins : Int = 0;
@@ -23,10 +28,9 @@ class Tutorial_07 extends hxd.App {
 
         // level setup
 
-        //walls = []; for( w in walls ) w = []; // initializing walls array (required by `loadLevel`)
         background_tilegroup = new h2d.TileGroup( Res.tilegroup.toTile(), s2d );
 
-        loadLevel( sys.io.File.getContent( "./res/level02.txt" ) );
+        loadLevel( hxd.Res.level02.entry.getText() ); //loadLevel( sys.io.File.getContent( "./res/level02.txt" ) );
 
         this.engine.backgroundColor = 0xFF006600; // a dark green background
 

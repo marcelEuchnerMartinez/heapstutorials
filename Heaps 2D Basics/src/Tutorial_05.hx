@@ -4,7 +4,12 @@ import h2d.Anim;
 class Tutorial_05 extends hxd.App {
     static function main() {
         new Tutorial_05();
-        Res.initLocal();
+        
+        #if sys
+        hxd.Res.initLocal(); // HashLink
+        #else
+        hxd.Res.initEmbed(); // Html5/js
+        #end
     }
 
     var player  : h2d.Anim;
@@ -20,10 +25,9 @@ class Tutorial_05 extends hxd.App {
 
         // level setup
 
-        //walls = []; for( w in walls ) w = []; // initializing walls array (required by `loadLevel`)
         background_tilegroup = new h2d.TileGroup( Res.tilegroup.toTile(), s2d );
 
-        loadLevel( sys.io.File.getContent( "./res/level01.txt" ) );
+        loadLevel( hxd.Res.level01.entry.getText() ); //loadLevel( sys.io.File.getContent( "./res/level01.txt" ) );
 
         this.engine.backgroundColor = 0xFF006600; // a dark green background
 

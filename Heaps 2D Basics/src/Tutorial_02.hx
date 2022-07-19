@@ -4,7 +4,12 @@ import h2d.Anim;
 class Tutorial_02 extends hxd.App {
     static function main() {
         new Tutorial_02();
-        Res.initLocal();
+        
+        #if sys
+        hxd.Res.initLocal(); // HashLink
+        #else
+        hxd.Res.initEmbed(); // Html5/js
+        #end
     }
 
     var player  : h2d.Anim;
@@ -20,7 +25,7 @@ class Tutorial_02 extends hxd.App {
         // coins
         for( i in 0...20 ){
             var tiles  = Res.coin_strip.toTile().split( 4 );
-            var frames = tiles.concat( [ tiles[2], tiles[1] ] );
+            var frames = tiles.concat( [ tiles[2], tiles[1] ] ); // this will make (0, 1, 2, 3, 2, 1)
             var coin  = new h2d.Anim( frames, 5, s2d );
             assignRandomPositionInScene( coin );
         }

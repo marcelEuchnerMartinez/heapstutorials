@@ -4,7 +4,12 @@ import h2d.Anim;
 class Tutorial_03 extends hxd.App {
     static function main() {
         new Tutorial_03();
-        Res.initLocal();
+        
+        #if sys
+        hxd.Res.initLocal(); // HashLink
+        #else
+        hxd.Res.initEmbed(); // Html5/js
+        #end
     }
     var player  : h2d.Anim;
     
@@ -87,7 +92,7 @@ class Tutorial_03 extends hxd.App {
         var old_sprite = player;
 
         var tile = Res.blue_strip.toTile();
-        var framesAll    = tile.split( 6 );
+        var framesAll = tile.split( 6 );
         for( f in framesAll ){
             f.center();
             if( looksLeft ){

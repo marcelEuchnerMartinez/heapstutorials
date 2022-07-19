@@ -32,12 +32,3 @@
 #-D resourcesPath=assets ???
 #-D dce=full
 -D debug=true
-
-#-main Tutorial_01
-#-main Tutorial_02
-#-main Tutorial_03
-#-main Tutorial_04
-#-main Tutorial_05
-#-main Tutorial_06
-#-main Tutorial_07
-#-main Tutorial_0

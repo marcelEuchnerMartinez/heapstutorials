@@ -4,7 +4,12 @@ import h2d.Anim;
 class Tutorial_04 extends hxd.App {
     static function main() {
         new Tutorial_04();
-        Res.initLocal();
+
+        #if sys
+        hxd.Res.initLocal(); // HashLink
+        #else
+        hxd.Res.initEmbed(); // Html5/js
+        #end
     }
 
     var player  : h2d.Anim;

@@ -4,7 +4,13 @@ import h2d.Bitmap;
 class Tutorial_01 extends hxd.App {
     static function main() {
         new Tutorial_01();
-        Res.initLocal();
+
+        // make our game resources/assets available (!)
+        #if sys
+        hxd.Res.initLocal(); // use this for HashLink
+        #else
+        hxd.Res.initEmbed(); // use this for html5/js
+        #end
     }
     
     override function init() {
