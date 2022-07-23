@@ -5,7 +5,7 @@ import hxd.Res;
 
 class Level extends h2d.Scene {
 
-    public var walls   : Array< { bounds:h2d.col.Bounds, type:Int } > = [];
+    public var walls   : Array< { bounds:h2d.col.Bounds, type:Int } > = []; // type would allow to store the information *what* kind of wall is detected (however this is never used here...)
     public var background_tilegroup : h2d.TileGroup;
 
     // contained GameObjects
