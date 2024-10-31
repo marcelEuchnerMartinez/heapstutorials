@@ -9,6 +9,8 @@ Including:
 - Interaction between objects (one-to-many, many-to-many)
 - Wall collisions (many-to-many)
 
+![preview image](https://github.com/marcelEuchnerMartinez/heapstutorials/blob/master/Heaps%202D%20Basics/preview.png?raw=true)
+
 ## Overview: What's added each chapter
 
 ### Part 01
