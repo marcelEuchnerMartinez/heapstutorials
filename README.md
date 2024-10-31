@@ -17,3 +17,11 @@ ok|_|using a "game object/entity" class and a "level" class|Basics OOP
 _|_|camera on player|_
 _|_|UI / HUD (user interface, head-up display)|_
 _|_|portal between two scenes (portal with filter)|_
+
+## Preview images
+
+![preview image](https://github.com/marcelEuchnerMartinez/heapstutorials/blob/master/Heaps%202D%20Basics/preview.png?raw=true)
+Basic version
+
+![preview image](https://github.com/marcelEuchnerMartinez/heapstutorials/blob/master/Heaps%202D%20Basics%20-%20as%20OOP%20project/preview_oop.png?raw=true)
+OOP version
